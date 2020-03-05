@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :products
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    resources :products
+    get 'fun', to: 'fun#index'
+    get 'react', to: 'react#index'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/:locale/fun', to: 'fun#index'
   root 'fun#index'
-  get '/:locale/react', to: 'react#index'
 end
