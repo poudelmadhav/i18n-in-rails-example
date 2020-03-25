@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # i18n globalize
 gem 'globalize', '~> 5.3'
+gem 'pry-rails'

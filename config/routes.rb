@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :answers
+  resources :responses
+  resources :questions
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :products
     get 'fun', to: 'fun#index'
