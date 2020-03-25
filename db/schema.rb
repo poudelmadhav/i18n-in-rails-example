@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_055117) do
+ActiveRecord::Schema.define(version: 2020_03_25_034141) do
+
+  create_table "answers", force: :cascade do |t|
+    t.string "title"
+    t.integer "question_id", null: false
+    t.boolean "correct"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
 
   create_table "product_translations", force: :cascade do |t|
     t.integer "product_id", null: false
@@ -31,4 +40,23 @@ ActiveRecord::Schema.define(version: 2020_03_05_055117) do
     t.integer "price"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "answer_id"
+    t.boolean "status", default: true
+    t.index ["answer_id"], name: "index_responses_on_answer_id"
+    t.index ["question_id"], name: "index_responses_on_question_id"
+  end
+
+  add_foreign_key "answers", "questions"
+  add_foreign_key "responses", "answers"
+  add_foreign_key "responses", "questions"
 end
