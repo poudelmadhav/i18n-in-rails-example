@@ -29,7 +29,7 @@ class ResponsesController < ApplicationController
       Response.create!(question_id: key.to_i, answer_id: value.to_i)
     end
 
-    redirect_to responses_path, otice: 'Response was successfully created.'
+    redirect_to responses_path, notice: 'Response was successfully created.'
 
     # respond_to do |format|
     #   if @response.save
